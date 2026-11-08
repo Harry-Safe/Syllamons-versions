@@ -1,0 +1,29 @@
+{
+  "version": "1.9.0",
+  "date": "2026-11-08",
+  "commit": "694d9a29e8e61147e32ee5e7582d3bdc47928350",
+  "notes": [
+    "Application Windows « Les Syllamons » (installateur .exe) : les dossiers de la classe et de ta voix sont choisis une fois puis rebranchés tout seuls à chaque démarrage, sans autorisation à redonner ; s'ils sont introuvables (Google Drive arrêté), l'appli le dit et continue. « Enregistrer sous… » de Windows pour les sauvegardes et rapports, plein écran au démarrage (conseillé sur les portables).",
+    "Mises à jour automatiques et signées : l'application vérifie le site des mises à jour au démarrage et installe la nouvelle version quand aucun élève ne joue ; l'installateur n'est accepté que s'il porte la signature de l'auteur. Élèves, résultats, voix et dossiers sont gardés. Versions publiées ou d'essai au choix (Réglages › Cet ordinateur).",
+    "Appli de Ma classe (panneau Applis de l'application Windows de Ma classe) : Syllamons enregistre tout dans Ma classe/Applis/syllamons/donnees/ (classe, élèves, sauvegardes, et ta voix à part dans ma-voix/), synchronisé par Google Drive ; rien à choisir. Une autre Ma classe reliée au même dossier retrouve tout.",
+    "Fichier de liaison pour les portables qui ont l'application : le lien et le code de la classe en ligne, et ta voix, ouverts une fois sur chaque portable (remplace la copie de Syllamons.html, qui reste possible dans le navigateur).",
+    "Les données du navigateur ne passent pas toutes seules dans l'application : un portable relié à la classe en ligne ou au dossier de la classe retrouve tout ; sinon « Tout sauvegarder » puis « Tout restaurer »."
+  ],
+  "fichiers": {
+    "appli": {
+      "url": "appli/essai/Syllamons_1.9.0_x64-setup-essai.exe",
+      "taille": 1748750,
+      "sha256": "64f0a628730addab9afa51ea843db9f036fa756fa38a921e3db5cf13702ade8e"
+    },
+    "ma-classe": {
+      "url": "integree/essai/Syllamons-pour-Ma-classe_1.9.0-essai.zip",
+      "taille": 538930,
+      "sha256": "718925dceec8f41805d8bfab1e061afc99da935037dc9e9fc6f8cc1a19f3e542"
+    },
+    "html": {
+      "url": "html/essai/Syllamons.html",
+      "taille": 1716401,
+      "sha256": "45135e692646d2ea23805f9e1289ac0232c15a366a8b7129b23c6bd2926652b3"
+    }
+  }
+}
