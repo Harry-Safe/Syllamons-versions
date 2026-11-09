@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "La fenêtre principale des Syllamons seulement",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

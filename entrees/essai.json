@@ -1,7 +1,7 @@
 {
   "version": "1.9.1",
   "date": "2026-11-09",
-  "commit": "34e584b71e7cd8edba219c22a81eb1a9c21aa0a5",
+  "commit": "d28724a80ca4d1ebfa0403d8eca8331722c92b9a",
   "notes": [
     "Cursive à la bonne taille : les lettres en cursive (Marelle) étaient minuscules dans L'Œil (leur taille se calculait sur le texte autour, pas sur la carte). Elles ont maintenant la même hauteur de corps que le script, un trait un peu plus épais, et tiennent entières dans leur case (hampes et jambages compris), sur grand comme sur petit écran.",
     "Majuscules bâton : les trois écritures du CP sont vraiment là — script, cursive et CAPITALES d'imprimerie (« OU » et plus « Ou »). Elles apparaissent dès le niveau Standard (environ un quart des propositions), et plus seulement en Défi ; les intrus de la chasse aussi, pour qu'aucune écriture ne trahisse la réponse. En cursive, une majuscule s'écrit toujours en bâton, comme les élèves l'écrivent. Le niveau Étayage reste en script."
@@ -9,13 +9,13 @@
   "fichiers": {
     "appli": {
       "url": "appli/essai/Syllamons_1.9.1_x64-setup-essai.exe",
-      "taille": 1749510,
-      "sha256": "8dad03ad916cb1f115fd3ac69a1a6ff74b0a7a7a33c5293f9a1e8ab5f0f7bfe9"
+      "taille": null,
+      "sha256": null
     },
     "ma-classe": {
       "url": "integree/essai/Syllamons-pour-Ma-classe_1.9.1-essai.zip",
-      "taille": 539627,
-      "sha256": "c83a0bd885232d8c1db2717c56cc1025b1e3a2c2daf9e53bf8095df6e0496d18"
+      "taille": 537404,
+      "sha256": "9e5f207d022e71ad10cde57b37225a7651cc1abd1ed08c27f1e6a53902bf1775"
     },
     "html": {
       "url": "html/essai/Syllamons.html",

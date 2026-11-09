@@ -1,7 +1,7 @@
 {
   "version": "1.9.1",
   "notes": "Cursive à la bonne taille : les lettres en cursive (Marelle) étaient minuscules dans L'Œil (leur taille se calculait sur le texte autour, pas sur la carte). Elles ont maintenant la même hauteur de corps que le script, un trait un peu plus épais, et tiennent entières dans leur case (hampes et jambages compris), sur grand comme sur petit écran.\nMajuscules bâton : les trois écritures du CP sont vraiment là — script, cursive et CAPITALES d'imprimerie (« OU » et plus « Ou »). Elles apparaissent dès le niveau Standard (environ un quart des propositions), et plus seulement en Défi ; les intrus de la chasse aussi, pour qu'aucune écriture ne trahisse la réponse. En cursive, une majuscule s'écrit toujours en bâton, comme les élèves l'écrivent. Le niveau Étayage reste en script.",
-  "pub_date": "2026-11-09T12:50:29Z",
+  "pub_date": "2026-11-09T21:25:16Z",
   "platforms": {
     "windows-x86_64": {
       "signature": "",
