@@ -2,6 +2,11 @@
 
 Le plus récent en tête.
 
+## 2026-11-09 — Essai 1.9.1
+
+- Canal **essai** : cursive à la bonne taille et majuscules bâton dans L'Œil (commit source `34e584b`, branche
+  `claude/essai-1.9`). Installateur signé par l'action (secret `TAURI_SIGNING_PRIVATE_KEY`).
+
 ## 2026-11-08 — Essai 1.9.0 (premier dépôt)
 
 - Site créé : page de téléchargement, `outils/assembler.py`, `outils/signer-appli.py`, action « Publier les mises à jour ».

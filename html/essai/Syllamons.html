@@ -230,7 +230,16 @@ h2.dit .icon-btn{width:2.8rem;height:2.8rem;font-size:1.25rem;flex:none}
 .rond{width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1.5rem}
 .rond svg.ic{stroke-width:2.8}
 .rond.oui{background:var(--ok)} .rond.non{background:var(--ko)}
-.cursive{font-family:'Marelle','Andika',cursive!important;font-weight:400!important;font-size:1.12em}
+/* cursive Marelle : à taille égale, ses lettres sont PLUS grandes que celles d'Andika (hampes et jambages très longs).
+   La taille est donc fixée pour chaque support (jamais en « em » du parent, qui la rendait minuscule), de sorte que le
+   corps de la lettre (a, o, u) ait la hauteur du script ; trait légèrement épaissi ; mot regroupé dans .cur,
+   remonté d'un peu pour centrer les hampes et jambages ; une majuscule y reste en bâton (.baton, Andika). */
+.cursive{font-family:'Marelle','Andika',cursive!important;font-weight:400!important;-webkit-text-stroke:.03em currentColor}
+.cursive .cur{display:inline-block;line-height:1;position:relative;top:-.17em;white-space:nowrap}
+.choice.cursive{font-size:clamp(2rem,6vmin,3.3rem)}
+.tile.cursive{font-size:clamp(1.55rem,4.8vmin,2.4rem)}
+.tile.cursive.long{font-size:clamp(1.3rem,3.8vmin,1.9rem)}
+.cursive .baton{font-family:'Andika',sans-serif;font-weight:700;-webkit-text-stroke:0;font-size:1.55em;line-height:.8;vertical-align:-.02em}
 .syl > span:nth-child(odd){color:var(--syl1)} .syl > span:nth-child(even){color:var(--syl2)}
 .word-big{font-weight:700;font-size:clamp(3.6rem,13vmin,6.6rem);background:#fff;border-radius:var(--r-l);padding:.3rem 2.2rem;box-shadow:var(--ombre);letter-spacing:.04em}
 .grid-hunt{display:grid;grid-template-columns:repeat(6,clamp(4.4rem,12vmin,6.2rem));gap:.8rem}
@@ -699,7 +708,7 @@ const LEVELS = { aid: 'Étayage', std: 'Standard', defi: 'Défi' };
 const NOPT = { aid: 2, std: 3, defi: 4 };
 
 /* numéro de version : le changer ici seulement (affiché dans Réglages › À propos) */
-const VERSION = '1.9';
+const VERSION = '1.9.1';
 /* ---------- utilitaires ---------- */
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -1877,7 +1886,10 @@ const CONF = { b: ['d', 'p'], d: ['b', 'p', 't'], p: ['b', 'd', 't'], m: ['n'], 
 const VIS = { b: ['d', 'p', 'h'], d: ['b', 'p', 'q'], p: ['q', 'b', 'd'], m: ['n', 'w'], n: ['m', 'u', 'h'], u: ['n', 'v'], v: ['u', 'w', 'y'], l: ['i', 't', 'f'], i: ['l', 'j', 't'], y: ['v', 'g'], f: ['t', 'l'], t: ['f', 'l'], a: ['o', 'e', 'd'], o: ['a', 'e', 'c'], e: ['o', 'c', 'a'], 'é': ['è', 'e', 'ê'], 'è': ['é', 'e', 'ê'], c: ['e', 'o', 's'], s: ['z', 'c'], z: ['s', 'x'], r: ['n', 'v'], g: ['q', 'p', 'j'], j: ['i', 'g'], h: ['n', 'b'], ch: ['hc', 'cl', 'oh'], au: ['ua', 'ou', 'an'], eau: ['ea', 'oeu', 'eu'] };
 Object.keys(D.conf || {}).forEach(g => { if (!CONF[g]) CONF[g] = D.conf[g]; });
 Object.assign(VIS, D.vis || {});
-const UP = g => g.length > 1 ? g[0].toUpperCase() + g.slice(1) : g.toUpperCase();
+/* les trois écritures du CP : script (minuscules d'imprimerie), cursive, et CAPITALES d'imprimerie (« majuscules bâton ») */
+const UP = g => g.toUpperCase();
+/* en cursive, une majuscule s'écrit en bâton (comme les élèves l'écrivent) : « Lune » → L bâton + « une » cursive */
+const cursif = t => `<span class="cur">${esc(t).replace(/\p{Lu}+/gu, m => `<span class="baton">${m}</span>`)}</span>`;
 function sameSound(a, b) { const k = x => (D.son && D.son[x] !== undefined ? D.son[x] : null) ?? ({ y: 'i', eau: 'o', au: 'o' }[x] || x); return k(a) === k(b); }
 /* cibles de L'Œil : z.cibles (périodes 3-5 ; null = seulement la chasse), sinon les graphèmes de la zone */
 const cibles = z => z.cibles === undefined ? z.g : z.cibles;
@@ -1927,10 +1939,9 @@ GEN.oeil = {
         dis = uniq([...shuffle(dis), ...shuffle(known)]).slice(0, NOPT[L] - 1);
       }
       const opts = shuffle([good, ...dis]).map(g => {
-        let cls = '', txt = g;
-        if (L === 'defi' && Math.random() < .5) { if (Math.random() < .5) cls = 'cursive'; else txt = UP(g); }
-        else if (L === 'std' && Math.random() < .25) cls = 'cursive';
-        return `<button class="choice ${cls}" data-act="ans" data-v="${esc(g)}">${esc(txt)}</button>`;
+        /* script, cursive ou capitales bâton : Standard 25 % cursive + 20 % capitales ; Défi un tiers de chaque */
+        const r = Math.random(), f = L === 'defi' ? (r < .33 ? 'cursive' : r < .66 ? 'baton' : '') : L === 'std' ? (r < .25 ? 'cursive' : r < .45 ? 'baton' : '') : '';
+        return `<button class="choice ${f === 'cursive' ? 'cursive' : ''}" data-act="ans" data-v="${esc(g)}">${f === 'cursive' ? cursif(g) : esc(f === 'baton' ? UP(g) : g)}</button>`;
       });
       const hkey = sonDe(z, good);
       stage(`<div class="son"><button class="bubble" data-act="replay" title="Réécouter"><i data-i="son"></i></button></div><div class="choices">${opts.join('')}</div>`);
@@ -1938,14 +1949,18 @@ GEN.oeil = {
       first ? say(this.cons, hkey) : G.replay();
     } else {
       const n = L === 'aid' ? 8 : 12, nt = L === 'aid' ? 3 : L === 'std' ? 4 : 5;
-      const forms = g => { const f = [{ t: g, c: '' }]; if (L !== 'aid' && (!['ch', 'au', 'eau'].includes(g) || GW[g] > 14)) f.push({ t: g, c: 'cursive' }); if (L === 'defi') f.push({ t: UP(g), c: '' }); return f; };
+      /* les trois écritures (Standard et Défi) : script, cursive, CAPITALES bâton ; les intrus aussi, pour qu'aucune écriture ne trahisse la réponse */
+      const forms = g => { const f = [{ t: g, c: '' }]; if (L !== 'aid' && (!['ch', 'au', 'eau'].includes(g) || GW[g] > 14)) f.push({ t: g, c: 'cursive' }); if (L !== 'aid') f.push({ t: UP(g), c: '' }); return f; };
       const tiles = [];
       for (let i = 0; i < nt; i++) { const f = pick(forms(pick(target))); tiles.push({ ...f, ok: true }); }
       const vis = uniq(target.flatMap(t => VIS[t] || [])).filter(v => !target.includes(v));
-      while (tiles.length < n) { const v = pick(vis.length ? vis : ['x']); tiles.push({ t: v, c: L !== 'aid' && Math.random() < .3 && v.length === 1 ? 'cursive' : '', ok: false }); }
+      while (tiles.length < n) {
+        const v = pick(vis.length ? vis : ['x']), r = Math.random();
+        tiles.push(L === 'aid' ? { t: v, c: '', ok: false } : r < .3 && v.length === 1 ? { t: v, c: 'cursive', ok: false } : r < .5 ? { t: UP(v), c: '', ok: false } : { t: v, c: '', ok: false });
+      }
       it.tiles = shuffle(tiles);
       stage(`<div class="model">Modèle : <span class="tile">${esc(target.join(' '))}</span></div>
-        <div class="grid-hunt ${n === 8 ? 'small' : ''}">${it.tiles.map((t, i) => `<button class="tile ${t.c}" data-act="tog" data-i="${i}">${esc(t.t)}</button>`).join('')}</div>
+        <div class="grid-hunt ${n === 8 ? 'small' : ''}">${it.tiles.map((t, i) => `<button class="tile ${t.c}${t.c && t.t.length > 2 ? ' long' : ''}" data-act="tog" data-i="${i}">${t.c === 'cursive' ? cursif(t.t) : esc(t.t)}</button>`).join('')}</div>
         <button class="btn primary" data-act="huntDone"><i data-i="ok"></i> J’ai fini !</button>`);
       G.replay = () => say('ui:chasse'); G.maxTries = 1; G.hunt = true;
       if (first || !G.saidChasse) { G.saidChasse = true; say('ui:chasse'); }

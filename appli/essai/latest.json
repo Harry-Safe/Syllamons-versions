@@ -1,11 +1,11 @@
 {
-  "version": "1.9.0",
-  "notes": "Application Windows « Les Syllamons » (installateur .exe) : les dossiers de la classe et de ta voix sont choisis une fois puis rebranchés tout seuls à chaque démarrage, sans autorisation à redonner ; s'ils sont introuvables (Google Drive arrêté), l'appli le dit et continue. « Enregistrer sous… » de Windows pour les sauvegardes et rapports, plein écran au démarrage (conseillé sur les portables).\nMises à jour automatiques et signées : l'application vérifie le site des mises à jour au démarrage et installe la nouvelle version quand aucun élève ne joue ; l'installateur n'est accepté que s'il porte la signature de l'auteur. Élèves, résultats, voix et dossiers sont gardés. Versions publiées ou d'essai au choix (Réglages › Cet ordinateur).\nAppli de Ma classe (panneau Applis de l'application Windows de Ma classe) : Syllamons enregistre tout dans Ma classe/Applis/syllamons/donnees/ (classe, élèves, sauvegardes, et ta voix à part dans ma-voix/), synchronisé par Google Drive ; rien à choisir. Une autre Ma classe reliée au même dossier retrouve tout.\nFichier de liaison pour les portables qui ont l'application : le lien et le code de la classe en ligne, et ta voix, ouverts une fois sur chaque portable (remplace la copie de Syllamons.html, qui reste possible dans le navigateur).\nLes données du navigateur ne passent pas toutes seules dans l'application : un portable relié à la classe en ligne ou au dossier de la classe retrouve tout ; sinon « Tout sauvegarder » puis « Tout restaurer ».",
-  "pub_date": "2026-11-08T17:24:14Z",
+  "version": "1.9.1",
+  "notes": "Cursive à la bonne taille : les lettres en cursive (Marelle) étaient minuscules dans L'Œil (leur taille se calculait sur le texte autour, pas sur la carte). Elles ont maintenant la même hauteur de corps que le script, un trait un peu plus épais, et tiennent entières dans leur case (hampes et jambages compris), sur grand comme sur petit écran.\nMajuscules bâton : les trois écritures du CP sont vraiment là — script, cursive et CAPITALES d'imprimerie (« OU » et plus « Ou »). Elles apparaissent dès le niveau Standard (environ un quart des propositions), et plus seulement en Défi ; les intrus de la chasse aussi, pour qu'aucune écriture ne trahisse la réponse. En cursive, une majuscule s'écrit toujours en bâton, comme les élèves l'écrivent. Le niveau Étayage reste en script.",
+  "pub_date": "2026-11-09T12:50:29Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSNXBkNTN0TEhIZ3RlWC8ybXkxYlptUlFOS01KUlo2a1hDQzV2SnRKOURvM3ppR2N2U1liYnJnYlpIK041WVJBV0Y3S1M2cFdZaDY2ZVJ4aytaMFFTV2VSZ1JzYVpPRmdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTU4NjY4CWZpbGU6U3lsbGFtb25zXzEuOS4wX3g2NC1zZXR1cC1lc3NhaS5leGUKRHFDNy9jc05yT2Y4TXJSc1BRTWZONWk4RUlIdE9pNHdrOUs3VDJpeGJEcUFwcGtYeFRJNGZXMGZERWhvMXVXVk1PT2dyTHFQSUg3NzNxVDdTUVZoQXc9PQo=",
-      "url": "https://harry-safe.github.io/Syllamons-versions/appli/essai/Syllamons_1.9.0_x64-setup-essai.exe"
+      "signature": "",
+      "url": "https://harry-safe.github.io/Syllamons-versions/appli/essai/Syllamons_1.9.1_x64-setup-essai.exe"
     }
   }
 }
